@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>degital-clock</title>
+    <script type="text/javascript">
+        window.$ = window.jQuery = require('jquery');
+    </script>
+    <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+    <div id="content">
+        <div id="background">
+            <div class="time time-hm bg">88:88</div>
+            <div class="time time-s bg">00</div>
+            <div class="info-days month bg">88</div>
+            <div class="info-days slash bg">c</div>
+            <div class="info-days day bg">88</div>
+            <div class="info-week bg">~~~</div>
+            <div class="info-temp bg"></div>
+            <div class="info-weather bg">0</div>
+        </div>
+        <div class="line01"></div>
+        <div class="line02"></div>
+        <div id="clock">
+            <div class="time time-hm">88:88</div>
+            <div class="time time-s">88</div>
+            <div class="info-days month">88</div>
+            <div class="info-days slash">c</div>
+            <div class="info-days day">88</div>
+            <div class="info-week">~~~</div>
+            <div class="info-temp min">---</div>
+            <div class="info-temp slash">c</div>
+            <div class="info-temp max">---℃</div>
+            <div class="info-weather">0</div>
+            <div class="weather-telop">天気を取得中...</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/main.js"></script>
+</body>
+
+</html>

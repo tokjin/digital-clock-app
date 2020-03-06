@@ -1,0 +1,185 @@
+@font-face {
+    font-family: 'DSEG7Classic';
+    src: url("../assets/DSEG7Classic-Bold.woff") format('woff');
+}
+
+@font-face {
+    font-family: 'DSEG14Classic';
+    src: url("../assets/DSEG14Classic-Bold.woff") format('woff');
+}
+
+@font-face {
+    font-family: 'DSEGWeather';
+    src: url("../assets/DSEGWeather.woff") format('woff');
+}
+
+html {
+    margin: 2px;
+    -webkit-app-region: drag;
+    height: calc(100% - (2px * 2));
+    width: calc(100% - (2px * 2));
+    overflow: hidden;
+}
+
+body {
+    display: table;
+    background-color: rgb(34, 34, 36);
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+#content {
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    margin: auto;
+}
+
+.time, .time, .info-days, .info-temp, .info-temp {
+    font-family: "DSEG7Classic", "DSEG14Classic";
+}
+
+.info-week {
+    font-family: "DSEG14Classic";
+}
+
+.info-weather, .info-temp.slash, .info-days.slash {
+    font-family: "DSEGWeather";
+}
+
+#background {
+    color: rgba(0, 0, 0, 0.18);
+}
+
+#clock {
+    color: rgb(0, 255, 167);
+}
+
+.time-hm {
+    top: 10px;
+    position: absolute;
+    float: left;
+    font-size: 160px;
+    text-align: center;
+}
+
+.time-s {
+    top: 130px;
+    left: 560px;
+    position: absolute;
+    float: left;
+    font-size: 45px;
+    text-align: center;
+}
+
+.line01 {
+    position: absolute;
+    left: 650px;
+    top: 20px;
+    width: 1px;
+    height: 160px;
+    background-color: rgb(0, 255, 167);
+}
+
+.line02 {
+    position: absolute;
+    left: 660px;
+    top: 80px;
+    width: 355px;
+    height: 1px;
+    background-color: rgb(0, 255, 167);
+}
+
+.info-days.month {
+    top: 20px;
+    left: 670px;
+    position: absolute;
+    float: left;
+    font-size: 50px;
+    text-align: center;
+}
+
+.info-days.slash {
+    top: 20px;
+    left: 760px;
+    position: absolute;
+    float: left;
+    font-size: 50px;
+    text-align: center;
+}
+
+.info-days.day {
+    top: 20px;
+    left: 790px;
+    position: absolute;
+    float: left;
+    font-size: 50px;
+    text-align: center;
+}
+
+.info-week {
+    top: 20px;
+    left: 900px;
+    position: absolute;
+    float: left;
+    font-size: 50px;
+    text-align: center;
+}
+
+.info-temp.min {
+    top: 90px;
+    left: 670px;
+    position: absolute;
+    float: left;
+    font-size: 46px;
+    text-align: center;
+}
+
+.info-temp.max {
+    top: 135px;
+    left: 755px;
+    position: absolute;
+    float: left;
+    font-size: 46px;
+    text-align: center;
+}
+
+.info-temp.slash {
+    top: 90px;
+    left: 790px;
+    position: absolute;
+    float: left;
+    font-size: 40px;
+    text-align: center;
+}
+
+.info-weather {
+    top: 80px;
+    left: 930px;
+    position: absolute;
+    float: left;
+    font-size: 100px;
+    text-align: center;
+}
+
+.weather-telop {
+    top: 100px;
+    left: 930px;
+    width: 100px;
+    position: absolute;
+    font-size: 30px;
+    opacity: 0;
+    color: white;
+    z-index: 99;
+    -webkit-transition:	all 0.6s ease;
+	transition:	all 0.6s ease;
+    -webkit-app-region: no-drag;
+}
+
+.weather-telop:hover {
+	opacity: 1;
+}
+
