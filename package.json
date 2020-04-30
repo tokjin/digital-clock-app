@@ -10,7 +10,7 @@
   "dependencies": {
     "electron": "^3.0.2",
     "electron-json-storage": "^4.1.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "request": "^2.88.2"
   },
   "devDependencies": {},
