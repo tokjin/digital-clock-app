@@ -12,6 +12,7 @@ app.on('ready', () => {
         webPreferences: { nodeIntegration: true }
     });
     mainWindow.loadFile('public/index.html');
+    mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => { mainWindow = null; });
 });
 
@@ -24,14 +25,34 @@ app.on('activate', () => {
 });
 
 ipcMain.on('wetherCheck', (e, city) => {
-    if(!city) city = 130010; // Tokyo(130010)
     let data = wetherCheck(city);
 });
-
+/*
 let wetherCheck = (city) => {
+    if(!city) city = 130010; // Tokyo(130010)
     try {
         let options = {
             url: 'http://weather.livedoor.com/forecast/webservice/json/v1?city='+city,
+            method: 'GET',
+        }
+
+        request.get(options, function (err, res, body) {
+            mainWindow.webContents.send('receiveWether', JSON.parse(body));
+            console.log('access wether api');
+        });
+
+    } catch (e) {
+        console.log('wetherCheck error: ' + e);
+    }
+}
+*/
+let wetherCheck = (city) => {
+    const API_KEY = ""; // openweathermapのapi key（無料でOK）
+    const CITY_ID = "1850147"; // Tokyo
+    
+    try {
+        let options = {
+            url: 'http://api.openweathermap.org/data/2.5/forecast?id='+CITY_ID+'&APPID='+API_KEY+'&lang=ja',
             method: 'GET',
         }
 

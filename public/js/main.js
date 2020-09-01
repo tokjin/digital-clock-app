@@ -13,7 +13,7 @@ const clockSizeHeight = 200;
 const clockSizeWidth = 1036;
 let colon = false;
 let startDay;
-
+/*
 ipcRenderer.on('receiveWether', (event, arg) => {
     let tempMin, tempMax, weatherParam;
     let tempJson = arg.forecasts[0].temperature;
@@ -70,6 +70,94 @@ ipcRenderer.on('receiveWether', (event, arg) => {
     }
     
     $('#clock .weather-telop').text(weatherTelop);
+    
+});
+*/
+
+// JSONに含まれる天気情報から最新のものだけを抽出する
+let findJson = (json) => {
+    let date = new Date();
+    let jsUnixTime = date.getTime();
+    let StUnixTime = Math.floor(jsUnixTime/1000);
+    let outputJson;
+    
+    for(let i=0; i<json.list.length; i++){
+        console.log(json.list[i].dt, StUnixTime)
+        
+        if(json.list[i].dt >= StUnixTime){
+            outputJson = json.list[i];
+            return outputJson;
+        }
+    }
+    
+}
+
+// 数字を四捨五入
+let orgRound =(value, base) => {
+    return Math.round(value * base) / base;
+}
+
+ipcRenderer.on('receiveWether', (event, arg) => {
+    let json = findJson(arg);
+    
+    let tempMin = orgRound(json.main.temp_min - 273.15, 10), // 最低気温
+        tempMax = orgRound(json.main.temp_max - 273.15, 10), // 最大気温
+        temp = orgRound(json.main.temp - 273.15, 10), // 現在の気温
+        weatherMain = json.weather[0].main, // 天気英語
+        weatherDesc = json.weather[0].description, // 天気日本語テキスト
+        humidity = json.main.humidity; // 湿度
+    
+    let outputText = '現在: <b>'+temp+'℃</b><br>湿度: <b>'+humidity+'%</b><br>天気: <b>'+weatherDesc+'</b>';
+    
+    if(tempMin){
+        $('#clock .info-temp.min').text(tempMin.toFixed(1));
+        
+    } else {
+        $('#clock .info-temp.min').text('---');
+    }
+    
+    if(tempMax){
+        $('#clock .info-temp.max').text(tempMax.toFixed(1)+'℃');
+        
+    } else {
+        $('#clock .info-temp.max').text('---℃');
+    }
+    
+    if(weatherMain.indexOf('Snow') !== -1) {
+        // 雪(5)
+        $('#clock .info-weather').text(5);
+        
+    } else if(weatherMain.indexOf('Thunder') !== -1) {
+        if(weatherMain.indexOf('Rain') !== -1) {
+            // 雷雨(7)
+            $('#clock .info-weather').text(7);
+            
+        } else {
+            // 雷(8)
+            $('#clock .info-weather').text(8);
+        }
+    } else if(weatherMain.indexOf('Rain') !== -1) {
+        if(weatherMain.indexOf('Clouds') !== -1) {
+            // 曇ときどき雨(3)
+            $('#clock .info-weather').text(3);
+        } else {
+            // 雨(4)
+            $('#clock .info-weather').text(4);
+        }        
+    } else if(weatherMain.indexOf('Clear') !== -1) {
+        if(weatherMain.indexOf('Clouds') !== -1) {
+            // 晴ときどき曇(9)
+            $('#clock .info-weather').text(9);
+        } else {
+            // 晴れ(1)
+            $('#clock .info-weather').text(1);
+        }     
+    } else if(weatherMain.indexOf('Clouds') !== -1) {
+        // 曇(2)
+        $('#clock .info-weather').text(2);
+    }
+    
+    $('#clock .weather-telop').html(outputText);
     
 });
 

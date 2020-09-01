@@ -167,10 +167,10 @@ body {
 
 .weather-telop {
     top: 100px;
-    left: 930px;
-    width: 100px;
+    left: 920px;
+    width: 124px;
     position: absolute;
-    font-size: 30px;
+    font-size: 19px;
     opacity: 0;
     color: white;
     z-index: 99;
