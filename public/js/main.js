@@ -200,7 +200,8 @@ let frame = () => {
 }
 
 let getWeather = () => {
-    ipcRenderer.send('wetherCheck', 130010);
+    if(!API_KEY) console.log('API_KEY Not Found!');
+    ipcRenderer.send('wetherCheck', API_KEY);
 }
 
 let changePosition = () => {

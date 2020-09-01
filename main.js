@@ -12,7 +12,7 @@ app.on('ready', () => {
         webPreferences: { nodeIntegration: true }
     });
     mainWindow.loadFile('public/index.html');
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => { mainWindow = null; });
 });
 
@@ -24,10 +24,15 @@ app.on('activate', () => {
     if (mainWindow === null) createWindow();
 });
 
+ipcMain.on('wetherCheck', (e, key) => {
+    let data = wetherCheck(key);
+});
+/*
+
 ipcMain.on('wetherCheck', (e, city) => {
     let data = wetherCheck(city);
 });
-/*
+
 let wetherCheck = (city) => {
     if(!city) city = 130010; // Tokyo(130010)
     try {
@@ -46,13 +51,13 @@ let wetherCheck = (city) => {
     }
 }
 */
-let wetherCheck = (city) => {
-    const API_KEY = ""; // openweathermapのapi key（無料でOK）
+let wetherCheck = (key) => {
+    if(!key) return;
     const CITY_ID = "1850147"; // Tokyo
     
     try {
         let options = {
-            url: 'http://api.openweathermap.org/data/2.5/forecast?id='+CITY_ID+'&APPID='+API_KEY+'&lang=ja',
+            url: 'http://api.openweathermap.org/data/2.5/forecast?id='+CITY_ID+'&APPID='+key+'&lang=ja',
             method: 'GET',
         }
 
