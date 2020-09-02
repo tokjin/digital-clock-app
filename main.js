@@ -54,7 +54,8 @@ let wetherCheck = (city) => {
 let wetherCheck = (key) => {
     if(!key) return;
     const CITY_ID = "1850147"; // Tokyo
-    
+    // こっちの方が良いかも daily[0].temp.max/min, current.temp/weather[0].description/main
+    // https://api.openweathermap.org/data/2.5/onecall?lat=35.728&lon=139.710&exclude=hourly&appid=&lang=ja
     try {
         let options = {
             url: 'http://api.openweathermap.org/data/2.5/forecast?id='+CITY_ID+'&APPID='+key+'&lang=ja',
